@@ -6,12 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import com.sachin.personaldiary.View.AddDiary
-import com.sachin.personaldiary.View.Home
-import com.sachin.personaldiary.View.Settings
-import com.sachin.personaldiary.View.ViewDiary
-import com.sachin.personaldiary.databinding.ActivityMainBinding
 
+import com.sachin.personaldiary.databinding.ActivityMainBinding
+import com.sachin.personaldiary.fragments.AddDiaryFragment
+import com.sachin.personaldiary.fragments.HomeFragment
+import com.sachin.personaldiary.fragments.SettingsFragment
+import com.sachin.personaldiary.fragments.ViewDiaryFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,15 +22,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(Home())
+        replaceFragment(HomeFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
 
             when(it.itemId){
 
-                R.id.viewDiary -> replaceFragment(ViewDiary())
-                R.id.addDiary -> replaceFragment(AddDiary())
-                R.id.settings -> replaceFragment(Settings())
+                R.id.viewDiary -> replaceFragment(ViewDiaryFragment())
+                R.id.addDiary -> replaceFragment(AddDiaryFragment())
+                R.id.settings -> replaceFragment(SettingsFragment())
 
                 else ->{
 
