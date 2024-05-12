@@ -8,8 +8,9 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="btn">#212832</color>
 
-    <color name="mainBackgroundColor">#83D3DD</color>
+    <color name="mainBackgroundColor">#547597</color>
 
-    <color name="BottomNavigationView">#8CF6EC</color>
+    <color name="BottomNavigationView">#81A4C8</color>
 </resources>

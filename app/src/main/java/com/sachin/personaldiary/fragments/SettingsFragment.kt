@@ -11,17 +11,7 @@ import com.sachin.personaldiary.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/*class SettingsFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
-    }
-
-}*/
 class SettingsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
