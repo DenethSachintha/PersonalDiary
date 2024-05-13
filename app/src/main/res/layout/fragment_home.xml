@@ -43,10 +43,6 @@
             android:textSize="45sp"
             android:textStyle="bold"
             android:textColor="@color/white"/>
-
-
-
-
     </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

@@ -7,7 +7,11 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sachin.personaldiary.R
 
+
+
+
 class MainFragment : Fragment() {
+
     private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreateView(
@@ -17,9 +21,9 @@ class MainFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        replaceFragment(HomeFragment())
         bottomNavigationView = view.findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setOnItemSelectedListener {
 
@@ -34,10 +38,9 @@ class MainFragment : Fragment() {
             true
         }
     }
-
     private fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = childFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.replace(R.id.frame_main_layout, fragment)
         fragmentTransaction.commit()
     }
 }
