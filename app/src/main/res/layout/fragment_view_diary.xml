@@ -18,24 +18,15 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/welcomeTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
-                android:text="Welcome Deneth"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/todayTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/welcomeTxt"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:text="Today's Diary"
-                android:textSize="28sp"
+                android:textSize="30sp"
+                android:textColor="@color/dark"
                 android:textStyle="bold" />
             <ImageView
                 android:id="@+id/sortImg"
@@ -45,7 +36,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="15dp"
                 android:src="@drawable/ic_sort" />
 
             <com.google.android.material.textfield.TextInputLayout

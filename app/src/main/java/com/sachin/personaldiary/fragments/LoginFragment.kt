@@ -35,11 +35,9 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-
         txtUsername = view.findViewById(R.id.txtUsername)
         txtPassword = view.findViewById(R.id.txtPassword)
         lblReadResponse = view.findViewById(R.id.lblReadResponse)
-
 
         signUpNavBtn = view.findViewById(R.id.signUpNavBtn)
         signUpNavBtn.setOnClickListener {
@@ -51,22 +49,29 @@ class LoginFragment : Fragment() {
             strUsername = txtUsername.text.toString().trim()
             strPassword = txtPassword.text.toString().trim()
 
-            loginViewModel.getLoginDetails(requireContext(), strUsername)!!.observe(viewLifecycleOwner, Observer {
 
-                if (it == null) {
-                    lblReadResponse.text = "User Not Found"
-                    txtUsername.text = null
-                    txtPassword.text = null
-                }
-                else {
-                    if(it.Password==strPassword){
-                        replaceFragment(MainFragment())
-                    }else{
-                        lblReadResponse.text = "Wrong Password"
+            if (strUsername.isEmpty()) {
+                txtUsername.error = "Username Can't Be Empty"
+            } else if (strPassword.isEmpty()) {
+                txtPassword.error = "Password Can't Be Empty"
+            } else {
+                loginViewModel.getLoginDetails(requireContext(), strUsername)!!.observe(viewLifecycleOwner, Observer {
+
+                    if (it == null) {
+                        lblReadResponse.text = "User Not Found"
+                        txtUsername.text = null
                         txtPassword.text = null
                     }
-                }
-            })
+                    else {
+                        if(it.Password==strPassword){
+                            replaceFragment(MainFragment())
+                        }else{
+                            lblReadResponse.text = "Wrong Password"
+                            txtPassword.text = null
+                        }
+                    }
+                })
+            }
         }
     }
     private fun replaceFragment(fragment: Fragment) {

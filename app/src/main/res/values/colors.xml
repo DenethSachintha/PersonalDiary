@@ -9,8 +9,10 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="btn">#212832</color>
+    <color name="dark">#212832</color>
+    <color name="dev">#212832</color>
 
-    <color name="mainBackgroundColor">#547597</color>
+    <color name="mainBackgroundColor">#ADB8FB</color>
 
-    <color name="BottomNavigationView">#81A4C8</color>
+    <color name="BottomNavigationView">#99A9FB</color>
 </resources>

@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 import com.sachin.personaldiary.databinding.ActivityMainBinding
-import com.sachin.personaldiary.fragments.HomeFragment
 import com.sachin.personaldiary.fragments.LoginFragment
-import com.sachin.personaldiary.fragments.MainFragment
-import com.sachin.personaldiary.fragments.SettingsFragment
-import com.sachin.personaldiary.fragments.ViewDiaryFragment
+
 
 
 class MainActivity : AppCompatActivity() {

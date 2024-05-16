@@ -1,26 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/mainBackgroundColor"
     tools:context=".fragments.SettingsFragment">
 
-    <!-- First TextView -->
-    <TextView
-        android:id="@+id/text"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Developer Icon -->
+        <ImageView
+            android:id="@+id/devIcon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_above="@id/dev"
+            android:src="@drawable/baseline_logo_dev_24"
+            app:tint="@color/black" />
+
+        <!-- Developer Name -->
+        <TextView
+            android:id="@+id/dev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="18dp"
+            android:text="Developed By Deneth Sachintha"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+    <!-- Logout Button -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This App was developed by "
-        android:textSize="20dp"/>
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/btn"
+        android:text="Logout"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:icon="@drawable/baseline_logout_24"
+        app:iconSize="25dp"
+        app:iconTint="@color/white" />
 
-    <!-- Second TextView -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Deneth Sachintha (D/BCE/22/0027)."
-        android:textSize="20dp"/>
-
-</LinearLayout>
+</FrameLayout>

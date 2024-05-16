@@ -38,9 +38,15 @@ class MainFragment : Fragment() {
             true
         }
     }
-    private fun replaceFragment(fragment: Fragment) {
+    /*private fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = childFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_main_layout, fragment)
         fragmentTransaction.commit()
+    }*/
+    private fun replaceFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frame_main_layout, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
