@@ -12,10 +12,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -31,9 +31,9 @@ import kotlinx.coroutines.launch
 import java.util.Date
 import java.util.UUID
 
-
 class HomeFragment : Fragment() {
     private lateinit var addDiaryFABtn: ExtendedFloatingActionButton
+    private lateinit var username: String
 
     private val loadingDialog: Dialog by lazy {
         Dialog(requireContext(), R.style.DialogCustomTheme).apply {
@@ -60,6 +60,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Retrieve the username from the arguments
+        arguments?.let {
+            username = it.getString("USERNAME_KEY", "")
+        }
+
+        // Set the username to the TextView
+        val welcomeTextView: TextView = view.findViewById(R.id.userName)
+        welcomeTextView.text = username
+
         // Add diary start
         val addCloseImg = addDiaryDialog.findViewById<ImageView>(R.id.closeImg)
         addCloseImg.setOnClickListener { addDiaryDialog.dismiss() }
@@ -73,7 +82,6 @@ class HomeFragment : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 validateEditText(addETTitle, addETTitleL)
             }
-
         })
 
         val addETDesc = addDiaryDialog.findViewById<TextInputEditText>(R.id.edDiaryDesc)
@@ -86,29 +94,30 @@ class HomeFragment : Fragment() {
                 validateEditText(addETDesc, addETDescL)
             }
         })
+
         addDiaryFABtn = view.findViewById(R.id.addDiaryFABtn)
         addDiaryFABtn.setOnClickListener {
             clearEditText(addETTitle, addETTitleL)
             clearEditText(addETDesc, addETDescL)
             addDiaryDialog.show()
         }
-        //
+
         val multiplePhotoPickLauncher =
-            registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia()){ uris ->
-                for (image in uris){
+            registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia()) { uris ->
+                for (image in uris) {
                     // single image upload function
-                    newDiaryUpload( image)
+                    newDiaryUpload(image)
                 }
             }
+
         val saveDiaryBtn = addDiaryDialog.findViewById<Button>(R.id.saveDiaryBtn)
         saveDiaryBtn.setOnClickListener {
             multiplePhotoPickLauncher.launch(
                 PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
             )
         }
-        //
-        // Add diary end
     }
+
     private fun newDiaryUpload(imageUri: Uri) {
         val addETTitle = addDiaryDialog.findViewById<TextInputEditText>(R.id.edDiaryTitle)
         val addETTitleL = addDiaryDialog.findViewById<TextInputLayout>(R.id.edDiaryTitleL)
@@ -119,7 +128,6 @@ class HomeFragment : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 validateEditText(addETTitle, addETTitleL)
             }
-
         })
 
         val addETDesc = addDiaryDialog.findViewById<TextInputEditText>(R.id.edDiaryDesc)
@@ -132,31 +140,32 @@ class HomeFragment : Fragment() {
                 validateEditText(addETDesc, addETDescL)
             }
         })
+
         addDiaryFABtn.setOnClickListener {
             clearEditText(addETTitle, addETTitleL)
             clearEditText(addETDesc, addETDescL)
             addDiaryDialog.show()
         }
+
         CoroutineScope(Dispatchers.IO).launch {
-            try {if (validateEditText(addETTitle, addETTitleL)
-                && validateEditText(addETDesc, addETDescL)
-            ){  val contentResolver = requireContext().contentResolver
-                val newDiary = contentResolver.openInputStream(imageUri)?.readBytes()?.let {
-                    Diary(
-                        UUID.randomUUID().toString(),
-                        addETTitle.text.toString().trim(),
-                        addETDesc.text.toString().trim(),
-                        Date(),
-                        it
-                    )
+            try {
+                if (validateEditText(addETTitle, addETTitleL) && validateEditText(addETDesc, addETDescL)) {
+                    val contentResolver = requireContext().contentResolver
+                    val newDiary = contentResolver.openInputStream(imageUri)?.readBytes()?.let {
+                        Diary(
+                            UUID.randomUUID().toString(),
+                            addETTitle.text.toString().trim(),
+                            addETDesc.text.toString().trim(),
+                            Date(),
+                            it
+                        )
+                    }
+                    addDiaryDialog.dismiss()
+                    newDiary?.let {
+                        diaryViewModel.insertDiary(it)
+                    }
                 }
-                addDiaryDialog.dismiss()
-                //diaryViewModel.insertDiary(newDiary)
-                newDiary?.let {
-                    diaryViewModel.insertDiary(it)
-                }
-            }
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }

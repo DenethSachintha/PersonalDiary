@@ -11,23 +11,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <TextView
-            android:id="@+id/welcometxt"
+            android:id="@+id/welcomeTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="150dp"
             android:layout_centerHorizontal="true"
-            android:text="Welcome Deneth"
+            android:text="WelCome"
             android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark"/>
+        <TextView
+            android:id="@+id/userName"
+            android:layout_below="@id/welcomeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Name"
+            android:textSize="40sp"
+            android:layout_marginTop="20dp"
             android:textStyle="bold"
             android:textColor="@color/dark"/>
         <ImageView
             android:id="@+id/sortImg"
-            android:layout_below="@id/welcometxt"
+            android:layout_below="@id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="60dp"
+            android:layout_margin="30dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/logo" />
     </RelativeLayout>

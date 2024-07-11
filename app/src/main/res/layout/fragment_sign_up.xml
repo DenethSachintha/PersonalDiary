@@ -14,21 +14,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <!---->
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#AE2E2E"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -66,11 +58,9 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/txtUsername"
-                android:layout_width="0dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginTop="30dp"
                 android:hint="Username"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -79,11 +69,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/txtPassword"
-                android:layout_width="0dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
                 android:hint="Password"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -118,28 +106,14 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:icon="@drawable/baseline_login_24"
                 app:iconSize="25dp"
                 app:iconTint="@color/white"
-                app:layout_constraintTop_toBottomOf="@+id/createAccountBtn"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/lblInsertResponse"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:gravity="center"
-                android:lineSpacingExtra="5dp"
-                android:text="- - -"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginNavBtn" />
+                app:layout_constraintTop_toBottomOf="@+id/createAccountBtn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <!---->
     </RelativeLayout>

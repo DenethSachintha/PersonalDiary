@@ -7,18 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.sachin.personaldiary.R
 import com.sachin.personaldiary.viewmodels.LoginViewModel
-
 class LoginFragment : Fragment() {
     private lateinit var signUpNavBtn: Button
     private lateinit var txtUsername: AppCompatEditText
     private lateinit var txtPassword: AppCompatEditText
-    private lateinit var lblReadResponse: AppCompatTextView
-
     private lateinit var strUsername: String
     private lateinit var strPassword: String
 
@@ -37,7 +34,6 @@ class LoginFragment : Fragment() {
 
         txtUsername = view.findViewById(R.id.txtUsername)
         txtPassword = view.findViewById(R.id.txtPassword)
-        lblReadResponse = view.findViewById(R.id.lblReadResponse)
 
         signUpNavBtn = view.findViewById(R.id.signUpNavBtn)
         signUpNavBtn.setOnClickListener {
@@ -49,7 +45,6 @@ class LoginFragment : Fragment() {
             strUsername = txtUsername.text.toString().trim()
             strPassword = txtPassword.text.toString().trim()
 
-
             if (strUsername.isEmpty()) {
                 txtUsername.error = "Username Can't Be Empty"
             } else if (strPassword.isEmpty()) {
@@ -58,15 +53,16 @@ class LoginFragment : Fragment() {
                 loginViewModel.getLoginDetails(requireContext(), strUsername)!!.observe(viewLifecycleOwner, Observer {
 
                     if (it == null) {
-                        lblReadResponse.text = "User Not Found"
+                        txtUsername.error = "User Not Found"
                         txtUsername.text = null
                         txtPassword.text = null
                     }
                     else {
                         if(it.Password==strPassword){
-                            replaceFragment(MainFragment())
+                            replaceFragment(MainFragment(), it.Username)
+                            snackBarMassage(it.Username)
                         }else{
-                            lblReadResponse.text = "Wrong Password"
+                            txtPassword.error = "Wrong Password"
                             txtPassword.text = null
                         }
                     }
@@ -74,10 +70,24 @@ class LoginFragment : Fragment() {
             }
         }
     }
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment, username: String? = null) {
+        username?.let {
+            val bundle = Bundle()
+            bundle.putString("USERNAME_KEY", it)
+            fragment.arguments = bundle
+        }
         parentFragmentManager.beginTransaction()
             .replace(R.id.frame_layout, fragment)
             .addToBackStack(null)
             .commit()
+    }
+    private fun snackBarMassage(username: String) {
+        view?.let { rootView ->
+            val snackBar = Snackbar.make(
+                rootView, "Logged account ${username}",
+                Snackbar.LENGTH_LONG
+            )
+            snackBar.show()
+        }
     }
 }
