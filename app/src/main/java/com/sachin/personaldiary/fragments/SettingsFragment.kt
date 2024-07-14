@@ -1,6 +1,5 @@
 package com.sachin.personaldiary.fragments
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,7 +20,7 @@ class SettingsFragment : Fragment() {
     private lateinit var newUsernameEditText: EditText
 
     private lateinit var loginViewModel: LoginViewModel
-    private lateinit var username: String
+    private var username: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +39,7 @@ class SettingsFragment : Fragment() {
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         arguments?.let {
-            username = it.getString("USERNAME_KEY", "")
+            username = it.getString("USERNAME_KEY")
         }
 
         logoutBtn.setOnClickListener {
@@ -49,11 +48,12 @@ class SettingsFragment : Fragment() {
 
         updateUsernameBtn.setOnClickListener {
             val newUsername = newUsernameEditText.text.toString().trim()
-            if (newUsername.isNotEmpty() && username != null) {
+            if (newUsername.isNotEmpty() && !username.isNullOrEmpty()) {
                 loginViewModel.updateUsername(requireContext(), username!!, newUsername)
                 username = newUsername
                 newUsernameEditText.text = null
-                snackBarMessage("Username updated to $newUsername")
+                snackBarMessage("Username updated to $newUsername. Login again with new Username.")
+                replaceFragment(LoginFragment())
             } else {
                 newUsernameEditText.error = "New Username can't be empty"
             }

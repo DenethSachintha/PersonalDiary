@@ -83,10 +83,8 @@ class HomeFragment : Fragment() {
                 validateEditText(addETTitle, addETTitleL)
             }
         })
-
         val addETDesc = addDiaryDialog.findViewById<TextInputEditText>(R.id.edDiaryDesc)
         val addETDescL = addDiaryDialog.findViewById<TextInputLayout>(R.id.edDiaryDescL)
-
         addETDesc.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -94,14 +92,12 @@ class HomeFragment : Fragment() {
                 validateEditText(addETDesc, addETDescL)
             }
         })
-
         addDiaryFABtn = view.findViewById(R.id.addDiaryFABtn)
         addDiaryFABtn.setOnClickListener {
             clearEditText(addETTitle, addETTitleL)
             clearEditText(addETDesc, addETDescL)
             addDiaryDialog.show()
         }
-
         val multiplePhotoPickLauncher =
             registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia()) { uris ->
                 for (image in uris) {
@@ -109,7 +105,6 @@ class HomeFragment : Fragment() {
                     newDiaryUpload(image)
                 }
             }
-
         val saveDiaryBtn = addDiaryDialog.findViewById<Button>(R.id.saveDiaryBtn)
         saveDiaryBtn.setOnClickListener {
             multiplePhotoPickLauncher.launch(

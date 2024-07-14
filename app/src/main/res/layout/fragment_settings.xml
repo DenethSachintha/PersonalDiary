@@ -5,12 +5,61 @@
     android:layout_height="match_parent"
     android:background="@color/mainBackgroundColor"
     tools:context=".fragments.SettingsFragment">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+        <TextView
+            android:id="@+id/settingsTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Settings"
+            android:textSize="30sp"
+            android:textColor="@color/dark"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/UpdateUserNameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/settingsTxt"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:text="Update Username"
+            android:textSize="20sp"
+            android:textColor="@color/dark"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/editTextNewUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_below="@id/UpdateUserNameTxt"
+            android:hint="New Username"/>
+        <Button
+            android:id="@+id/buttonUpdateUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextNewUsername"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/btn"
+            android:textStyle="bold"
+            android:text="Update Username"/>
+        <TextView
+            android:id="@+id/UpdatePasswordTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonUpdateUsername"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:text="Update Password"
+            android:textSize="20sp"
+            android:textColor="@color/dark"
+            android:textStyle="bold" />
         <!-- Developer Icon -->
         <ImageView
             android:id="@+id/devIcon"
@@ -33,30 +82,13 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black" />
-
-        <EditText
-            android:id="@+id/editTextNewUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:hint="New Username"/>
-
-        <Button
-            android:id="@+id/buttonUpdateUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextNewUsername"
-            android:layout_margin="16dp"
-            android:text="Update Username"/>
     </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|end"
-
-        android:layout_marginTop="100dp"
+        android:layout_gravity="bottom|end"
         android:backgroundTint="@color/btn"
         android:text="Logout"
         android:textColor="@color/white"
