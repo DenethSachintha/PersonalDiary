@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_below="@id/UpdateUserNameTxt"
             android:hint="New Username"/>
         <Button
@@ -60,7 +61,35 @@
             android:textSize="20sp"
             android:textColor="@color/dark"
             android:textStyle="bold" />
-        <!-- Developer Icon -->
+        <EditText
+            android:id="@+id/editTextOldPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_below="@id/UpdatePasswordTxt"
+            android:hint="Old Password"/>
+        <EditText
+            android:id="@+id/editTextNewPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_below="@id/editTextOldPassword"
+            android:hint="New Password"/>
+        <Button
+            android:id="@+id/buttonUpdatePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextNewPassword"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/btn"
+            android:textStyle="bold"
+            android:text="Update Password"/>
+
         <ImageView
             android:id="@+id/devIcon"
             android:layout_width="60dp"
@@ -69,8 +98,6 @@
             android:layout_above="@id/dev"
             android:src="@drawable/baseline_logo_dev_24"
             app:tint="@color/black" />
-
-        <!-- Developer Name -->
         <TextView
             android:id="@+id/dev"
             android:layout_width="wrap_content"
@@ -90,6 +117,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:backgroundTint="@color/btn"
+        android:layout_marginBottom="160dp"
+        android:layout_marginEnd="20dp"
         android:text="Logout"
         android:textColor="@color/white"
         android:textSize="18sp"

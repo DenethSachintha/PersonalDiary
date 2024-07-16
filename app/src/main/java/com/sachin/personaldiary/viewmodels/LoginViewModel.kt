@@ -21,4 +21,7 @@ class LoginViewModel : ViewModel() {
     fun updateUsername(context: Context, currentUsername: String, newUsername: String) {
         LoginRepository.updateUsername(context, currentUsername, newUsername)
     }
+    fun updatePassword(context: Context, username: String, newPassword: String) {
+        LoginRepository.updatePassword(context, username, newPassword)
+    }
 }

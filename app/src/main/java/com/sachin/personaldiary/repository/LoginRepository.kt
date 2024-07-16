@@ -41,5 +41,12 @@ class LoginRepository {
                 loginDatabase!!.loginDao().updateUsername(currentUsername, newUsername)
             }
         }
+
+        fun updatePassword(context: Context, username: String, newPassword: String) {
+            loginDatabase = initializeDB(context)
+            CoroutineScope(IO).launch {
+                loginDatabase!!.loginDao().updatePassword(username, newPassword)
+            }
+        }
     }
 }
